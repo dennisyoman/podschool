@@ -79,6 +79,8 @@ $(document).ready(function () {
   });
 
   //init
+  //hide image not found icon
+  $("img").attr("onerror", "this.style.display='none'");
 
   resizeScreen();
   scrollFn();
