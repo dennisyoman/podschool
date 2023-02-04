@@ -1,0 +1,39 @@
+@keyframes bannerSlideIn {
+  0% {
+    @include opacity(0);
+    @include translate(20%, 0);
+  }
+
+  100% {
+    @include opacity(1);
+    @include translate(0, 0);
+  }
+}
+@keyframes bannerGrowing {
+  0% {
+    transform: scaleX(0);
+  }
+  20% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+@keyframes bannerFloating {
+  0% {
+    @include opacity(1);
+    @include translate(0, 0);
+  }
+
+  50% {
+    @include opacity(1);
+    @include translate(0, -10px);
+  }
+
+  100% {
+    @include opacity(1);
+    @include translate(0, 0);
+  }
+}
