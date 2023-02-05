@@ -131,6 +131,7 @@ section {
     white-space: nowrap;
     li {
       display: inline-block;
+      vertical-align: middle;
       border-left: 1px solid rgba(0, 0, 0, 0.1);
       a {
         display: inline-block;
@@ -162,16 +163,19 @@ section {
         display: none;
         cursor: pointer;
         &::after {
-          content: "\f0c9";
-          padding: 0 2vw;
-          font-size: 25px;
-          line-height: 25px;
-          font-family: "fontawesome";
+          vertical-align: middle;
+          display: inline-block;
+          content: "";
+          margin-left: 2vw;
+          width: 18px;
+          height: 25px;
+          background: url("../images/mmb.png") no-repeat center center;
+          background-size: contain;
         }
         &.active {
           &::after {
-            content: "\f00d";
-            color: $main;
+            background: url("../images/btn-close.png") no-repeat center center;
+            background-size: contain;
           }
         }
       }
