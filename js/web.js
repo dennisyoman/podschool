@@ -87,6 +87,45 @@ $(document).ready(function () {
   Wow.init();
 });
 
+//digit animation
+var digitAnim = false;
+function digitUpAnimation() {
+  var step = 100;
+  var items = document.querySelectorAll(".wow.digitUp.animated");
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    if (!item.classList.contains("end")) {
+      var t = 1;
+      if (item.querySelector(".digit").getAttribute("val").indexOf(".") != -1) {
+        t = 100;
+      }
+      var des =
+        parseFloat(item.querySelector(".digit").getAttribute("val")) * t;
+      var curr =
+        parseFloat(
+          item.querySelector(".digit").textContent.replaceAll(",", "")
+        ) * t;
+      if (curr < des) {
+        curr = parseInt(curr + des / step) / t;
+      } else {
+        item.classList.add("end");
+        curr = item.querySelector(".digit").getAttribute("val");
+      }
+      curr = curr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      item.querySelector(".digit").textContent = curr;
+    }
+  }
+  //
+  if (
+    document.querySelectorAll(".wow.digitUp.animated").length !=
+    document.querySelectorAll(".wow.digitUp.animated.end").length
+  ) {
+    setTimeout(digitUpAnimation, 10);
+  } else {
+    digitAnim = false;
+  }
+}
+
 var getTutors = function (id) {
   console.log(id);
 };
@@ -106,6 +145,17 @@ function scrollFn() {
     $("header").removeClass("compact");
   }
   //
+  if (document.getElementsByClassName("wow digitUp").length > 0) {
+    if (
+      document.querySelectorAll(".wow.digitUp.animated").length !=
+      document.querySelectorAll(".wow.digitUp.animated.end").length
+    ) {
+      if (!digitAnim) {
+        digitAnim = true;
+        digitUpAnimation();
+      }
+    }
+  }
 }
 
 function resizeScreen() {}
