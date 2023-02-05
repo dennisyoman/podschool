@@ -715,6 +715,32 @@ section {
   color: #fff;
 }
 @media screen and (max-width: 1024px) {
+  .tutors .cards-wrapper {
+    width: calc(100% + 100px);
+    max-width: calc(100% + 100px);
+    margin-left: -50px;
+  }
+  .tutors .cards-wrapper .cards-slider {
+    display: block;
+    white-space: nowrap;
+    padding: 0 50px;
+  }
+  .tutors .cards-wrapper .cards-slider > div {
+    display: inline-flex;
+    margin-right: 20px;
+  }
+}
+@media screen and (max-width: 850px) {
+  .tutors .cards-wrapper {
+    width: calc(100% + 40px);
+    max-width: calc(100% + 40px);
+    margin-left: -20px;
+  }
+  .tutors .cards-wrapper .cards-slider {
+    padding: 0 20px;
+  }
+}
+@media screen and (max-width: 1024px) {
   .tutors {
     background-image: url("../images/kids@2x.png "), url("../images/bg-tutors@2x.png ");
     background-position: center bottom, center center;

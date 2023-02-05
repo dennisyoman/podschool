@@ -651,6 +651,32 @@ section {
       color: #fff;
     }
   }
+  @media screen and (max-width: $md) {
+    .cards-wrapper {
+      width: calc(100% + 100px);
+      max-width: calc(100% + 100px);
+      margin-left: -50px;
+      .cards-slider {
+        display: block;
+        white-space: nowrap;
+        padding: 0 50px;
+        > div {
+          display: inline-flex;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $pad) {
+    .cards-wrapper {
+      width: calc(100% + 40px);
+      max-width: calc(100% + 40px);
+      margin-left: -20px;
+      .cards-slider {
+        padding: 0 20px;
+      }
+    }
+  }
 
   padding-top: 200px;
   padding-bottom: 200px;
