@@ -351,11 +351,51 @@ section {
   justify-content: center;
   align-items: center;
 }
-.top .swiper .swiper-wrapper .swiper-slide > * {
-  display: none;
-}
 .top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active > * {
-  display: block;
+  animation-play-state: initial;
+  animation-play-state: running;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner::after {
+  animation: bannerGrowing 8s 1 linear;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .wording > * {
+  animation: bannerSlideIn 0.4s;
+  animation-fill-mode: forwards;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .wording h2::after {
+  animation: bannerSlideIn 0.4s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.3s;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .wording p {
+  animation-delay: 0.6s;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .wording a {
+  animation-delay: 0.9s;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg > *,
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg img {
+  opacity: 0;
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  filter: alpha(opacity=0);
+  animation: bannerSlideIn 0.4s;
+  animation-fill-mode: forwards;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg .fore {
+  animation-duration: 0.8s;
+  animation-delay: 0.6s;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg .mid {
+  animation: fadeIn 1s 1;
+  animation-delay: 0.6s;
+  animation-fill-mode: forwards;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg .mid > img {
+  animation: bannerFloating 2s infinite;
+}
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg .back {
+  animation-delay: 0.4s;
 }
 .top .banner {
   width: 100%;
@@ -372,7 +412,6 @@ section {
   bottom: 0;
   left: 0;
   z-index: 10;
-  animation: bannerGrowing 4.5s 1 linear;
   transform-origin: top left;
 }
 .top .banner .wording {
@@ -383,26 +422,15 @@ section {
   -moz-opacity: 0;
   -khtml-opacity: 0;
   filter: alpha(opacity=0);
-  animation: bannerSlideIn 0.4s;
-  animation-fill-mode: forwards;
 }
 .top .banner .wording h2::after {
   display: block;
   margin-left: 0;
   left: 0;
-  animation: bannerSlideIn 0.4s;
-  animation-fill-mode: forwards;
-  animation-delay: 0.3s;
   opacity: 0;
   -moz-opacity: 0;
   -khtml-opacity: 0;
   filter: alpha(opacity=0);
-}
-.top .banner .wording p {
-  animation-delay: 0.6s;
-}
-.top .banner .wording a {
-  animation-delay: 0.9s;
 }
 .top .banner .banner-bg {
   position: absolute;
@@ -418,8 +446,6 @@ section {
   -moz-opacity: 0;
   -khtml-opacity: 0;
   filter: alpha(opacity=0);
-  animation: bannerSlideIn 0.4s;
-  animation-fill-mode: forwards;
   position: absolute;
   top: 0;
   left: 0;
@@ -438,21 +464,12 @@ section {
 }
 .top .banner .banner-bg .fore {
   z-index: 3;
-  animation-duration: 0.8s;
-  animation-delay: 0.6s;
 }
 .top .banner .banner-bg .mid {
   z-index: 2;
-  animation: fadeIn 1s 1;
-  animation-delay: 0.6s;
-  animation-fill-mode: forwards;
-}
-.top .banner .banner-bg .mid > img {
-  animation: bannerFloating 2s infinite;
 }
 .top .banner .banner-bg .back {
   z-index: 1;
-  animation-delay: 0.4s;
 }
 @media screen and (max-width: 1380px) {
   .top .banner {
@@ -494,6 +511,7 @@ section {
   -webkit-border-radius: 10px;
   position: relative;
   min-height: 297px;
+  overflow: hidden;
 }
 .course .category > div.elementary {
   background: #c6c7cc url("../images/elementary-bg.png") no-repeat center center;
@@ -539,7 +557,7 @@ section {
 .course .category img {
   position: absolute;
   right: 10px;
-  bottom: -5px;
+  bottom: -1px;
   z-index: 1;
 }
 .course .search {

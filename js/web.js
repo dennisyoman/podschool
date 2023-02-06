@@ -61,11 +61,11 @@ $(document).ready(function () {
   var banner = new Swiper("#swiper-banner", {
     speed: 1,
     slidesPerView: 1,
-    effect: "fade",
+    effect: "slide",
     loop: true,
     allowTouchMove: false,
     autoplay: {
-      delay: 4500,
+      delay: 8000,
     },
   });
   //testimonials
