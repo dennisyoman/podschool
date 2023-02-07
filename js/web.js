@@ -77,6 +77,10 @@ $(document).ready(function () {
       clickable: true,
     },
   });
+  //course
+  $(".course").click(function () {
+    $(this).toggleClass("active");
+  });
 
   //init
   //hide image not found icon
