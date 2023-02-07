@@ -6,12 +6,9 @@ $(document).ready(function () {
   });
 
   //blobs-btn
-  $(".blob-btn").append(`<span class="blob-btn__inner">
-  <span class="blob-btn__blob"></span>
-  <span class="blob-btn__blob"></span>
-  <span class="blob-btn__blob"></span>
-  <span class="blob-btn__blob"></span>
-</span>`);
+  $(".blob-btn").append(
+    '<span class="blob-btn__inner"><span class="blob-btn__blob"></span><span class="blob-btn__blob"></span><span class="blob-btn__blob"></span><span class="blob-btn__blob"></span></span>'
+  );
 
   //tabs
   $(".tab").each(function () {
@@ -43,20 +40,6 @@ $(document).ready(function () {
     resizeScreen();
   });
 
-  //fixed jump bg
-  if (navigator.userAgent.match(/Trident\/7\./)) {
-    // if IE
-    $("body").on("mousewheel", function (event) {
-      // remove default behavior
-      event.preventDefault();
-
-      //scroll without smoothing
-      var wheelDelta = event.wheelDelta;
-      var currentScrollPosition = window.pageYOffset;
-      window.scrollTo(0, currentScrollPosition - wheelDelta);
-    });
-  }
-
   //top banner
 
   var banner = new Swiper("#swiper-banner", {
@@ -81,8 +64,8 @@ $(document).ready(function () {
     },
   });
 
-  //course
-  $(".course").click(function () {
+  //class
+  $(".class").click(function () {
     $(this).toggleClass("active");
   });
 
@@ -92,24 +75,11 @@ $(document).ready(function () {
 
   //if IE
 
-  $("section:not(.top)")
-    .find("img")
-    .each(function () {
-      var obf = $(this).css("object-fit");
-      if (obf == "cover" || obf == "contain") {
-        var url = $(this).attr("src");
-        $(this)
-          .parent()
-          .css("background-image", "url('" + url + "')");
-        $(this).parent().css("background-repeat", "no-repeat");
-        var obfp = $(this).css("object-position");
-
-        $(this).parent().css("background-position", obfp);
-
-        $(this).parent().css("background-size", obf);
-        $(this).css("opacity", 0);
-      }
-    });
+  $(".bgimg").each(function () {
+    var url = $(this).find("> img").attr("src");
+    $(this).css("background-image", "url('" + url + "')");
+    $(this).find("> img").css("opacity", 0);
+  });
 
   resizeScreen();
   scrollFn();
@@ -120,34 +90,36 @@ $(document).ready(function () {
 var digitAnim = false;
 function digitUpAnimation() {
   var step = 100;
-  var items = document.querySelectorAll(".wow.digitUp.animated");
+
+  var items = $(".wow.digitUp.animated");
+
   for (var i = 0; i < items.length; i++) {
-    var item = items[i];
-    if (!item.classList.contains("end")) {
+    var item = items.eq(i);
+    if (!item.hasClass("end")) {
       var t = 1;
-      if (item.querySelector(".digit").getAttribute("val").indexOf(".") != -1) {
+      if (item.find(".digit").attr("val").indexOf(".") != -1) {
         t = 100;
       }
-      var des =
-        parseFloat(item.querySelector(".digit").getAttribute("val")) * t;
+
+      var des = parseFloat(item.find(".digit").eq(0).attr("val")) * t;
+
       var curr =
-        parseFloat(
-          item.querySelector(".digit").textContent.replaceAll(",", "")
-        ) * t;
+        parseFloat(item.find(".digit").eq(0).text().replace(",", "")) * t;
+
       if (curr < des) {
         curr = parseInt(curr + des / step) / t;
       } else {
-        item.classList.add("end");
-        curr = item.querySelector(".digit").getAttribute("val");
+        item.addClass("end");
+        curr = item.find(".digit").eq(0).attr("val");
       }
       curr = curr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      item.querySelector(".digit").textContent = curr;
+      item.find(".digit").eq(0).text(curr);
     }
   }
   //
+
   if (
-    document.querySelectorAll(".wow.digitUp.animated").length !=
-    document.querySelectorAll(".wow.digitUp.animated.end").length
+    $(".wow.digitUp.animated").length != $(".wow.digitUp.animated.end").length
   ) {
     setTimeout(digitUpAnimation, 10);
   } else {
@@ -174,10 +146,9 @@ function scrollFn() {
     $("header").removeClass("compact");
   }
   //
-  if (document.getElementsByClassName("wow digitUp").length > 0) {
+  if ($(".wow.digitUp").length > 0) {
     if (
-      document.querySelectorAll(".wow.digitUp.animated").length !=
-      document.querySelectorAll(".wow.digitUp.animated.end").length
+      $(".wow.digitUp.animated").length != $(".wow.digitUp.animated.end").length
     ) {
       if (!digitAnim) {
         digitAnim = true;

@@ -304,10 +304,6 @@ section {
         align-items: center;
 
         &.swiper-slide-active {
-          > * {
-            animation-play-state: initial;
-            animation-play-state: running;
-          }
           .banner {
             &::after {
               animation: bannerGrowing 8s 1 linear;
@@ -332,26 +328,21 @@ section {
               }
             }
             .banner-bg {
-              > *,
-              img {
+              .fore {
                 @include opacity(0);
+                animation-duration: 0.8s;
+                animation-delay: 0.6s;
                 animation: bannerSlideIn 0.4s;
                 animation-fill-mode: forwards;
               }
-              .fore {
-                animation-duration: 0.8s;
-                animation-delay: 0.6s;
-              }
               .mid {
-                animation: fadeIn 1s 1;
-                animation-delay: 0.6s;
-                animation-fill-mode: forwards;
-                > img {
-                  animation: bannerFloating 2s infinite;
-                }
+                animation: bannerFloating 2s infinite;
               }
               .back {
+                @include opacity(0);
                 animation-delay: 0.4s;
+                animation: bannerSlideIn 0.4s;
+                animation-fill-mode: forwards;
               }
             }
           }
@@ -398,30 +389,43 @@ section {
       width: 100%;
       height: 100%;
       z-index: 1;
-      > *,
-      img {
+      > * {
         @include opacity(0);
-
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: right center;
+
         z-index: 1;
+        background-size: contain;
+        background-position: right center;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: right center;
+        }
         @media screen and (max-width: 1480px) {
-          object-fit: cover;
-          object-position: center center;
+          background-size: cover;
+          background-position: center center;
+          img {
+            object-fit: cover;
+            object-position: center center;
+          }
         }
       }
       .fore {
+        width: 100%;
+        height: 100%;
         z-index: 3;
       }
       .mid {
+        width: 100%;
+        height: 100%;
         z-index: 2;
       }
       .back {
+        width: 100%;
+        height: 100%;
         z-index: 1;
       }
     }
@@ -432,20 +436,15 @@ section {
       padding: 80px 50px;
       .banner-bg {
         .fore {
-          top: 30%;
-          height: 70%;
+          top: 46%;
+          height: 54%;
           object-position: center center;
-        }
-        .mid {
-        }
-        .back {
         }
       }
     }
     @media screen and (max-width: $pad) {
       padding: 130px 20px 250px;
       .banner-bg {
-        > *,
         .fore {
         }
         .mid {
@@ -785,7 +784,7 @@ section {
       padding: 5px 5px 20px;
       width: 190px;
       min-width: 190px;
-      background: #fff;
+      background-color: #fff;
       @include borderRadius(10px);
       display: -webkit-box;
       display: -moz-box;
@@ -831,7 +830,7 @@ section {
         @include borderRadius(100%);
         overflow: hidden;
         margin-bottom: 20px;
-        background: $light;
+        background-color: $light;
         img {
           width: 100%;
           height: 100%;
@@ -1085,12 +1084,13 @@ section {
   background-position: center center;
   background-size: 100% 707px;
   background-repeat: no-repeat;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
+  //display: -webkit-box;
+  //display: -moz-box;
+  //display: -ms-flexbox;
+  //display: -webkit-flex;
+  //display: flex;
+  //align-items: center;
+  position: relative;
   @media screen and (max-width: $md) {
     background-size: auto 100%;
     padding-top: 200px;
@@ -1098,6 +1098,7 @@ section {
   }
   .content {
     position: relative;
+    top: 150px;
   }
 
   .deco {
@@ -1329,6 +1330,7 @@ section {
         height: 230px;
         margin-bottom: 20px;
         width: 90%;
+        background-size: contain;
         img {
           width: 100%;
           height: 100%;
@@ -1536,6 +1538,12 @@ footer {
 }
 
 //often used
+.bgimg {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
 .blob-btn {
   position: relative;
   overflow: hidden;

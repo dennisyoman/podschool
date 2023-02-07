@@ -367,10 +367,6 @@ section {
   justify-content: center;
   align-items: center;
 }
-.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active > * {
-  animation-play-state: initial;
-  animation-play-state: running;
-}
 .top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner::after {
   animation: bannerGrowing 8s 1 linear;
 }
@@ -389,29 +385,27 @@ section {
 .top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .wording a {
   animation-delay: 0.9s;
 }
-.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg > *,
-.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg img {
+.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg .fore {
   opacity: 0;
   -moz-opacity: 0;
   -khtml-opacity: 0;
   filter: alpha(opacity=0);
+  animation-duration: 0.8s;
+  animation-delay: 0.6s;
   animation: bannerSlideIn 0.4s;
   animation-fill-mode: forwards;
 }
-.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg .fore {
-  animation-duration: 0.8s;
-  animation-delay: 0.6s;
-}
 .top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg .mid {
-  animation: fadeIn 1s 1;
-  animation-delay: 0.6s;
-  animation-fill-mode: forwards;
-}
-.top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg .mid > img {
   animation: bannerFloating 2s infinite;
 }
 .top .swiper .swiper-wrapper .swiper-slide.swiper-slide-active .banner .banner-bg .back {
+  opacity: 0;
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  filter: alpha(opacity=0);
   animation-delay: 0.4s;
+  animation: bannerSlideIn 0.4s;
+  animation-fill-mode: forwards;
 }
 .top .banner {
   width: 100%;
@@ -456,8 +450,7 @@ section {
   height: 100%;
   z-index: 1;
 }
-.top .banner .banner-bg > *,
-.top .banner .banner-bg img {
+.top .banner .banner-bg > * {
   opacity: 0;
   -moz-opacity: 0;
   -khtml-opacity: 0;
@@ -465,26 +458,39 @@ section {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
+  background-size: contain;
+  background-position: right center;
+}
+.top .banner .banner-bg > * img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: right center;
-  z-index: 1;
 }
 @media screen and (max-width: 1480px) {
-  .top .banner .banner-bg > *,
-.top .banner .banner-bg img {
+  .top .banner .banner-bg > * {
+    background-size: cover;
+    background-position: center center;
+  }
+  .top .banner .banner-bg > * img {
     object-fit: cover;
     object-position: center center;
   }
 }
 .top .banner .banner-bg .fore {
+  width: 100%;
+  height: 100%;
   z-index: 3;
 }
 .top .banner .banner-bg .mid {
+  width: 100%;
+  height: 100%;
   z-index: 2;
 }
 .top .banner .banner-bg .back {
+  width: 100%;
+  height: 100%;
   z-index: 1;
 }
 @media screen and (max-width: 1380px) {
@@ -497,8 +503,8 @@ section {
     padding: 80px 50px;
   }
   .top .banner .banner-bg .fore {
-    top: 30%;
-    height: 70%;
+    top: 46%;
+    height: 54%;
     object-position: center center;
   }
 }
@@ -832,7 +838,7 @@ section {
   padding: 5px 5px 20px;
   width: 190px;
   min-width: 190px;
-  background: #fff;
+  background-color: #fff;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -884,7 +890,7 @@ section {
   -webkit-border-radius: 100%;
   overflow: hidden;
   margin-bottom: 20px;
-  background: #fbfbfb;
+  background-color: #fbfbfb;
 }
 .cards-wrapper .cards-slider .tutor .thumb img {
   width: 100%;
@@ -1129,12 +1135,7 @@ section {
   background-position: center center;
   background-size: 100% 707px;
   background-repeat: no-repeat;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
+  position: relative;
 }
 @media screen and (max-width: 1024px) {
   .testimonials {
@@ -1145,6 +1146,7 @@ section {
 }
 .testimonials .content {
   position: relative;
+  top: 150px;
 }
 .testimonials .deco {
   position: absolute;
@@ -1369,6 +1371,7 @@ section {
   height: 230px;
   margin-bottom: 20px;
   width: 90%;
+  background-size: contain;
 }
 .ads .ad > div .thumb img {
   width: 100%;
@@ -1551,6 +1554,12 @@ footer .copyright {
     text-align: center;
     margin-bottom: 30px;
   }
+}
+
+.bgimg {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .blob-btn {
