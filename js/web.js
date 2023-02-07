@@ -58,6 +58,7 @@ $(document).ready(function () {
   }
 
   //top banner
+
   var banner = new Swiper("#swiper-banner", {
     speed: 1,
     slidesPerView: 1,
@@ -68,7 +69,9 @@ $(document).ready(function () {
       delay: 8000,
     },
   });
+
   //testimonials
+
   var testimonial = new Swiper("#swiper-testimonial", {
     slidesPerView: 1,
     pagination: {
@@ -77,6 +80,7 @@ $(document).ready(function () {
       clickable: true,
     },
   });
+
   //course
   $(".course").click(function () {
     $(this).toggleClass("active");
@@ -85,6 +89,27 @@ $(document).ready(function () {
   //init
   //hide image not found icon
   $("img").attr("onerror", "this.style.display='none'");
+
+  //if IE
+
+  $("section:not(.top)")
+    .find("img")
+    .each(function () {
+      var obf = $(this).css("object-fit");
+      if (obf == "cover" || obf == "contain") {
+        var url = $(this).attr("src");
+        $(this)
+          .parent()
+          .css("background-image", "url('" + url + "')");
+        $(this).parent().css("background-repeat", "no-repeat");
+        var obfp = $(this).css("object-position");
+
+        $(this).parent().css("background-position", obfp);
+
+        $(this).parent().css("background-size", obf);
+        $(this).css("opacity", 0);
+      }
+    });
 
   resizeScreen();
   scrollFn();
